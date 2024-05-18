@@ -11,6 +11,7 @@ public class Utils {
             System.out.println(message);
             return scanner.nextInt();
         }catch (Exception e){
+            System.out.println("Please enter number!");
             scanner.nextLine();
             return getInt(message);
         }
@@ -20,6 +21,7 @@ public class Utils {
             System.out.println(message);
             return scanner.nextDouble();
         }catch (Exception e){
+            System.out.println("Please enter number!");
             scanner.nextLine();
             return getDouble(message);
         }
