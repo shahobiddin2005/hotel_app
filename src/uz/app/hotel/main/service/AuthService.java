@@ -19,7 +19,10 @@ public class AuthService implements uz.app.hotel.service.AuthService {
         String username = Utils.strScanner.nextLine();
         System.out.println("Enret password: ");
         String password = Utils.strScanner.nextLine();
-
+        if (Objects.equals("admin", username) && Objects.equals("admin", password)){
+            System.out.println("Username band!");
+            return;
+        }
         User user = new User(name, username, password);
         if (db.getUsers().add(user)) {
             System.out.println("User royhatdan otdi!");
