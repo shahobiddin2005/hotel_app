@@ -60,11 +60,9 @@ public class UserServise implements UserService {
 
     @Override
     public void showReservations() {
-        for (Hotel hotel : db.showAll()) {
-            for (Reservation reservation : db.showReservationByHotel(hotel.getId())) {
-                if (reservation.getStartDate().isBefore(LocalDate.now())) {
-                    System.out.println(reservation);
-                }
+        for (Reservation reservation : db.showReservationByUser(currentUser.getId())) {
+            if (reservation.getEndDate().isBefore(LocalDate.now())) {
+                System.out.println(reservation);
             }
         }
     }
@@ -75,23 +73,30 @@ public class UserServise implements UserService {
         System.out.println("Enter hotel id");
         String s = Utils.strScanner.nextLine();
         Hotel show = db.show(s);
-        Integer enterRoomFloor = Utils.getInt("Enter room floor");
         Integer enterRoomNumber = Utils.getInt("Enter room number");
         Integer anInt1 = Utils.getInt("How many days will you visit our hotel?");
         Integer anInt = Utils.getInt("How many days do you want to stay in this hotel?");
-        if (show.getFloors()<enterRoomFloor||show.getRoomsCount()<enterRoomNumber) {
+        if (show.getRoomsCount()<enterRoomNumber) {
             System.out.println("Error");
             return;
         }
-        Reservation reservation=new Reservation(currentUser,show,enterRoomFloor,enterRoomNumber,LocalDate.now().plusDays(anInt1),LocalDate.now().plusDays(anInt));
+        Reservation reservation=new Reservation(currentUser,show, 0,enterRoomNumber,LocalDate.now().plusDays(anInt1),LocalDate.now().plusDays(anInt+anInt1));
         db.addReservation(reservation);
 
     }
 
     @Override
     public void cancelReservation() {
+        boolean d=false;
         for (Reservation reservation : db.showReservationByUser(currentUser.getId())) {
-            System.out.println(reservation);
+            if(!reservation.getEarlierFinished()) {
+                System.out.println(reservation);
+                d=true;
+            }
+        }
+        if(!d){
+            System.out.println("Empty");
+            return;
         }
         System.out.println("Enter reservetion id");
         String s = Utils.strScanner.nextLine();

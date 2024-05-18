@@ -82,9 +82,9 @@ public class Reservation {
                 "id='" + id + '\'' +
                 ", user=" + user +
                 ", hotel=" + hotel +
-                ", floor=" + floor +
                 ", room=" + room +
                 ", startDate=" + startDate +
+                ", earlierFinished=" + earlierFinished +
                 ", endDate=" + endDate +
                 '}';
     }
