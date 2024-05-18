@@ -1,5 +1,6 @@
 package uz.app.hotel.entity;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class User {
@@ -36,6 +37,20 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (o instanceof User user)
+            return Objects.equals(username, user.username);
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username);
     }
 
     @Override
