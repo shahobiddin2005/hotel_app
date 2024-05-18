@@ -14,9 +14,9 @@ import java.util.List;
 
 public class DB implements HotelService, ReservationService {
 
-    private static HashSet<User> users = new HashSet<>();
-    private static ArrayList<Hotel> hotels = new ArrayList<>();
-    private static ArrayList<Reservation> reservations = new ArrayList<>();
+    private HashSet<User> users = new HashSet<>();
+    private ArrayList<Hotel> hotels = new ArrayList<>();
+    private ArrayList<Reservation> reservations = new ArrayList<>();
 
     private static DB db ;
     public static DB getInstance(){
@@ -25,13 +25,17 @@ public class DB implements HotelService, ReservationService {
         return db;
     }
 
-    public static HashSet<User> getUsers() {
+    public HashSet<User> getUsers() {
         return users;
     }
 
     @Override
     public void add(Hotel hotel) {
-
+        if (hotels.add(hotel)) {
+            System.out.println("Bajarildi");
+        }else{
+            System.out.println("Qandaydir muammo sodir buldi");
+        }
     }
 
     @Override
