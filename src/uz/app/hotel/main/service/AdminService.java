@@ -1,8 +1,11 @@
 package uz.app.hotel.main.service;
 
+import uz.app.hotel.entity.User;
+
 public class AdminService implements uz.app.hotel.service.AdminService {
+
     @Override
-    public void service() {
+    public void service(User user) {
 
     }
 

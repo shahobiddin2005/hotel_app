@@ -40,47 +40,84 @@ public class DB implements HotelService, ReservationService {
 
     @Override
     public Hotel show(String id) {
+        for (Hotel hotel : hotels) {
+            if(hotel.getId().equals(id)){
+                return hotel;
+            }
+        }
         return null;
     }
 
     @Override
     public List<Hotel> showAll() {
-        return null;
+        return hotels;
     }
 
     @Override
     public boolean edit(String id, Hotel hotel) {
-        return false;
+        Hotel show = show(id);
+        if (show==null){
+            return false;
+        }
+        show.setFloors(hotel.getFloors());
+        show.setName(hotel.getName());
+        show.setLocation(hotel.getLocation());
+        show.setRoomsCount(hotel.getRoomsCount());
+        return true;
     }
 
     @Override
     public boolean delete(String id) {
-        return false;
+        Hotel show = show(id);
+        return hotels.remove(show);
+
     }
 
     @Override
     public boolean addReservation(Reservation reservation) {
-        return false;
+        return reservations.add(reservation);
     }
 
     @Override
     public Reservation showReservation(String id) {
+        for (Reservation reservation : reservations) {
+           if(reservation.getId().equals(id)){
+               return reservation;
+           }
+        }
         return null;
     }
 
     @Override
     public List<Reservation> showReservationByUser(String id) {
-        return null;
+        ArrayList<Reservation> d=new ArrayList<>();
+        for (Reservation reservation : reservations) {
+            if(reservation.getUser().getId().equals(id)){
+                d.add(reservation);
+            }
+        }
+        return d;
     }
 
     @Override
     public List<Reservation> showReservationByHotel(String id) {
-        return null;
+        ArrayList<Reservation> d=new ArrayList<>();
+        for (Reservation reservation : reservations) {
+            if(reservation.getHotel().getId().equals(id)){
+                d.add(reservation);
+            }
+        }
+        return d;
     }
 
     @Override
     public boolean cancelReservation(String id) {
-        return false;
+        Reservation reservation = showReservation(id);
+        if (reservation==null){
+            return false;
+        }
+        reservation.setEarlierFinished(true);
+        return true;
     }
 
     @Override
