@@ -11,7 +11,7 @@ public class AdminService implements uz.app.hotel.service.AdminService {
     private DB db = DB.getInstance();
 
     @Override
-    public void service(User user) {
+    public void service() {
         while (true){
             switch (Utils.getInt("""
                     0 -> Exit 
