@@ -12,7 +12,7 @@ public class Reservation {
     private LocalDate startDate;
     private LocalDate endDate;
     private LocalDate earliestFinishedDate;
-    private Boolean earlierFinished;
+    private Boolean earlierFinished=false;
 
 
     public Reservation(User user, Hotel hotel, Integer floor, Integer room, LocalDate startDate, LocalDate endDate) {
@@ -87,5 +87,13 @@ public class Reservation {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 '}';
+    }
+
+    public Boolean getEarlierFinished() {
+        return earlierFinished;
+    }
+
+    public void setEarlierFinished(Boolean earlierFinished) {
+        this.earlierFinished = earlierFinished;
     }
 }
