@@ -3,7 +3,6 @@ package uz.app.hotel.database;
 import uz.app.hotel.entity.Hotel;
 import uz.app.hotel.entity.Reservation;
 import uz.app.hotel.entity.User;
-import uz.app.hotel.service.AdminService;
 import uz.app.hotel.service.HotelService;
 import uz.app.hotel.service.ReservationService;
 
@@ -14,9 +13,9 @@ import java.util.List;
 
 public class DB implements HotelService, ReservationService {
 
-    private static HashSet<User> users = new HashSet<>();
-    private static ArrayList<Hotel> hotels = new ArrayList<>();
-    private static ArrayList<Reservation> reservations = new ArrayList<>();
+    private HashSet<User> users = new HashSet<>();
+    private ArrayList<Hotel> hotels = new ArrayList<>();
+    private ArrayList<Reservation> reservations = new ArrayList<>();
 
     private static DB db ;
     public static DB getInstance(){
@@ -25,7 +24,7 @@ public class DB implements HotelService, ReservationService {
         return db;
     }
 
-    public static HashSet<User> getUsers() {
+    public HashSet<User> getUsers() {
         return users;
     }
 

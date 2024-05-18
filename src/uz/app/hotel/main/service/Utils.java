@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Utils {
     private static Scanner scanner = new Scanner(System.in);
-    private static Scanner strScanner = new Scanner(System.in);
+    public static Scanner strScanner = new Scanner(System.in);
 
     public static Integer getInt(String message){
         try {
